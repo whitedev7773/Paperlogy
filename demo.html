@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 페이퍼로지 웹폰트 로딩 -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/whitedev7773/Paperlogy/paperlogy.css">
+    <title>페이퍼로지 Demo</title>
+</head>
+<style>
+    /* 라이트 테마 및 공통 변수 */
+    :root {
+        /* 공통 변수 - 컬러 */
+        --primary-color: #2196f3;
+
+        /* 공통 변수 - 값 */
+        --toggle-button-height: 28px;
+        --toggle-button-padding: 4px;
+
+        /* 라이트 테마 변수 */
+        --body-color: white;
+        --primary-text-color: black;
+        --secondary-text-color: #9c9c9c;
+        --credit-text-color: #b8b8b8;
+        --input-disable-color: #ccc;
+        --container-border-color: #c0c0c0;
+    }
+
+    /* 다크 테마 변수 */
+    body[data-theme="dark"] {
+        --body-color: black;
+        --primary-text-color: white;
+        --secondary-text-color: #808080;
+        --credit-text-color: #4e4e4e;
+        --input-disable-color: #ccc;
+        --container-border-color: #383838;
+    }
+
+    /* 모든 요소의 폰트를 변경 */
+    * {
+        font-family: 'Paperlogy', sans-serif;
+        box-sizing: border-box;
+    }
+
+    /* 폰트 굵기 클래스로 정의 */
+    .thin			{ font-weight: 100 }
+    .extralight		{ font-weight: 200 }
+    .light			{ font-weight: 300 }
+    .regular		{ font-weight: 400 }
+    .medium			{ font-weight: 500 }
+    .semibold		{ font-weight: 600 }
+    .bold			{ font-weight: 700 }
+    .extrabold		{ font-weight: 800 }
+    .black			{ font-weight: 900 }
+
+    /* 실제 스타일 적용 */
+    body {
+        transition: background-color 0.2s ease-in-out;
+
+        margin: 0;
+        padding: 0;
+
+        background-color: var(--body-color);
+        color: var(--primary-text-color);
+        font-size: 13px;
+    }
+
+    /* 텍스트 요소의 margin/padding 제거 */
+    h1, h2, h3, h4, h5, h6, p, span, a{
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 전체 레이아웃 잡기 */
+    #root {
+        margin: auto;
+        margin-bottom: 40px;
+        padding: 20px;
+        box-sizing: border-box;
+        width: 100vw;
+        max-width: 1280px;
+    }
+
+    /* 메타데이터 스타일링 시작 ========================================================= */
+    #metadata {
+        margin-top: 80px;
+        margin-left: 10px;
+        margin-bottom: 30px;
+    }
+    /*  메타데이터 서브타이틀 */
+    #metadata > h3 {
+        font-size: 1.5rem;
+        color: var(--secondary-text-color);
+    }
+    
+    /*  메타데이터 타이틀 */
+    #metadata > h1 {
+        font-size: 3.75rem;
+    }
+    /*  메타데이터 개발자 */
+    #metadata > p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+    /* 메타데이터 스타일링 종료 ========================================================= */
+
+    /* 컨테이너 디자인 */
+    div.container {
+        border: 1px solid var(--container-border-color);
+        border-radius: 30px;
+        padding: 40px;
+    }
+
+    /* 일반 박스 디자인 */
+    div.box {
+        padding: 10px;
+    }
+    
+    /* 테마 전환 버튼 위치 레이아웃 */
+    div.toggle-theme-layout {
+        position: fixed;
+        right: max(20px, calc((100vw - 1280px) / 2));
+        top: 20px;
+
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 10px;
+    }
+
+    p#label {
+        font-size: 16px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+        padding: 14px 16px;
+        font-size: 18px;
+
+        background-color: transparent;
+        color: var(--secondary-text-color);
+        border: 1px solid var(--container-border-color);
+        border-radius: 16px;
+        outline: none;
+
+        transition: border 0.18s ease-in-out;
+    }
+
+    input[type="text"]:not(:placeholder-shown) {
+        color: var(--primary-text-color);
+    }
+
+    input[type="text"]:focus {
+        border: 1px solid var(--primary-color);
+        color: var(--primary-text-color);
+    }
+
+    input#demo-string-input, input#demo-string-size {
+        accent-color: var(--primary-color);
+        width: 500px;
+        height: 60px;
+    }
+
+    /* 크레딧 스타일링 */
+    span.credit {
+        position: fixed;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+
+        padding: 5px;
+        background-color: var(--body-color);
+
+        color: var(--credit-text-color);
+        text-align: center;
+    }
+
+    /* 데모 텍스트 크기 조정 */
+    p#demo-text {
+        transition: font-size 0.3s cubic-bezier(.32,.37,.16,.96);
+        font-size: 35px;
+    }
+
+    a {
+        text-decoration-line: none;
+        color: var(--primary-color);
+    }
+
+    /* 토글 버튼 스타링 시작 ========================================================= */
+    /* 기본 토글 버튼 스타일 */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: calc(var(--toggle-button-height)*2);
+        height: var(--toggle-button-height);
+    }
+
+    /* 숨겨진 체크박스 */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* 슬라이더 스타일 */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--input-disable-color);
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    /* 슬라이더가 동그라미 모양이 되도록 */
+    .slider:before {
+        position: absolute;
+        content: "";
+        width: calc(var(--toggle-button-height) - var(--toggle-button-padding)*2);
+        height: calc(var(--toggle-button-height) - var(--toggle-button-padding)*2);
+        left: var(--toggle-button-padding);
+        bottom: var(--toggle-button-padding);
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    /* 체크박스가 체크되었을 때 */
+    input:checked + .slider {
+        background-color: var(--primary-color);
+    }
+
+    /* 체크박스가 체크되었을 때 슬라이더의 위치 변경 */
+    input:checked + .slider:before {
+        transform: translateX(var(--toggle-button-height));
+    }
+    /* 토글 버튼 스타링 종료 ========================================================= */
+</style>
+<body data-theme="light">
+    <div id="root">
+        <div id="metadata">
+            <h3 class="regular">파워포인트를 위한 최고의 선택</h3>
+            <h1>페이퍼로지</h1>
+            <p>개발자 : 페이퍼로지 & 피티꾼</p>
+            <a href="https://freesentation.blog/paperlogyfont" target="_blank">https://freesentation.blog/paperlogyfont</a>
+        </div>
+        <div id="contents">
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+                <div class="box" style="margin-bottom: 20px;">
+                    <p id="label">원하는 문구를 입력해보세요.</p>
+                    <input id="demo-string-input" type="text" placeholder="다람쥐 헌 쳇바퀴에 타고파" />
+                </div>
+                <div>
+                    <p id="label">폰트 크기</p>
+                    <input id="demo-string-size" type="range" value="35" min="8" max="72" />
+                </div>
+            </div>
+            <div class="container">
+                <p id="demo-text" class="thin"></p>
+                <p id="demo-text" class="extralight"></p>
+                <p id="demo-text" class="light"></p>
+                <p id="demo-text" class="regular"></p>
+                <p id="demo-text" class="medium"></p>
+                <p id="demo-text" class="semibold"></p>
+                <p id="demo-text" class="bold"></p>
+                <p id="demo-text" class="extrabold"></p>
+                <p id="demo-text" class="black"></p>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- FIXED -->
+    <span class="credit bold">Demo Page by w.developer7773</span>
+    <div class="toggle-theme-layout">
+        <div style="width: 20px; height: 20px;">
+            <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve" fill="var(--primary-text-color)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <circle fill-rule="evenodd" clip-rule="evenodd" fill="var(--primary-text-color)" cx="32.003" cy="32.005" r="16.001"></circle> <path fill-rule="evenodd" clip-rule="evenodd" fill="var(--primary-text-color)" d="M12.001,31.997c0-2.211-1.789-4-4-4H4c-2.211,0-4,1.789-4,4 s1.789,4,4,4h4C10.212,35.997,12.001,34.208,12.001,31.997z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="var(--primary-text-color)" d="M12.204,46.139l-2.832,2.833c-1.563,1.562-1.563,4.094,0,5.656 c1.562,1.562,4.094,1.562,5.657,0l2.833-2.832c1.562-1.562,1.562-4.095,0-5.657C16.298,44.576,13.767,44.576,12.204,46.139z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="var(--primary-text-color)" d="M32.003,51.999c-2.211,0-4,1.789-4,4V60c0,2.211,1.789,4,4,4 s4-1.789,4-4l-0.004-4.001C36.003,53.788,34.21,51.999,32.003,51.999z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="var(--primary-text-color)" d="M51.798,46.143c-1.559-1.566-4.091-1.566-5.653-0.004 s-1.562,4.095,0,5.657l2.829,2.828c1.562,1.57,4.094,1.562,5.656,0s1.566-4.09,0-5.656L51.798,46.143z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="var(--primary-text-color)" d="M60.006,27.997l-4.009,0.008 c-2.203-0.008-3.992,1.781-3.992,3.992c-0.008,2.211,1.789,4,3.992,4h4.001c2.219,0.008,4-1.789,4-4 C64.002,29.79,62.217,27.997,60.006,27.997z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="var(--primary-text-color)" d="M51.798,17.859l2.828-2.829c1.574-1.566,1.562-4.094,0-5.657 c-1.559-1.567-4.09-1.567-5.652-0.004l-2.829,2.836c-1.562,1.555-1.562,4.086,0,5.649C47.699,19.426,50.239,19.418,51.798,17.859z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="var(--primary-text-color)" d="M32.003,11.995c2.207,0.016,4-1.789,4-3.992v-4 c0-2.219-1.789-4-4-4c-2.211-0.008-4,1.781-4,3.993l0.008,4.008C28.003,10.206,29.792,11.995,32.003,11.995z"></path> <path fill-rule="evenodd" clip-rule="evenodd" fill="var(--primary-text-color)" d="M12.212,17.855c1.555,1.562,4.079,1.562,5.646-0.004 c1.574-1.551,1.566-4.09,0.008-5.649l-2.829-2.828c-1.57-1.571-4.094-1.559-5.657,0c-1.575,1.559-1.575,4.09-0.012,5.653 L12.212,17.855z"></path> </g> </g></svg>    
+        </div>
+        <label id="switch-theme" class="switch">
+            <input type="checkbox" id="theme-toggle-button">
+            <span class="slider"></span>
+        </label>
+        <div style="width: 20px; height: 20px;">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="var(--primary-text-color)"></path> </g></svg>
+        </div>
+    </div>
+</body>
+<script>
+    /** @type {string} */
+    const demo_string = "다람쥐 헌 쳇바퀴에 타고파";
+
+    /**
+     * 모든 데모 텍스트를 동일한 문자열로 변경합니다.
+     * @param {string} demo_string - 변경할 텍스트
+     * @returns {null}
+     */
+    function applyDemoString(demo_string) {
+        let demos = document.querySelectorAll("p#demo-text");
+        demos.forEach((e) => {
+            e.innerText = demo_string;
+        });
+    }
+
+    /**
+     * 모든 데모 텍스트를 동일한 사이즈로 변경합니다.
+     * @param {number} size - 변경할 사이즈 (px)
+     * @returns {null}
+     */
+    function applyDemoSize(size) {
+        let demos = document.querySelectorAll("p#demo-text");
+        demos.forEach((e) => {
+            e.style = `font-size: ${size}px;`;
+        });
+    }
+
+    // 페이지 로드 시 localStorage에서 테마를 불러와 설정
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            if (savedTheme == "dark") {
+                document.getElementById('theme-toggle-button').checked = true;
+            }
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+        
+        // 데모 문장 적용
+        applyDemoString(demo_string);
+    });
+
+    // 테마 전환 버튼 클릭 이벤트 핸들러
+    document.getElementById('theme-toggle-button').addEventListener('click', function() {
+        const activeDarkTheme = document.getElementById('theme-toggle-button').checked;
+        const newTheme = activeDarkTheme ? 'dark' : 'light';
+        document.body.setAttribute('data-theme', newTheme);
+
+        // 새로운 테마를 localStorage에 저장
+        localStorage.setItem('theme', newTheme);
+    });
+
+    // input[type="text"]에서 입력할 때마다
+    document.getElementById('demo-string-input').addEventListener('input', function() {
+        // 데모 문장 적용
+        let new_string = document.getElementById('demo-string-input').value === "" ? demo_string : this.value;
+        applyDemoString(new_string);
+    });
+
+    // input[type="range"]에서 움직일 때마다
+    document.getElementById('demo-string-size').addEventListener('input', function() {
+        // 데모 문장 적용
+        let size = document.getElementById('demo-string-size').value;
+        console.log(size);
+        applyDemoSize(size);
+    });
+</script>
+</html>
