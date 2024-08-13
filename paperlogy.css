@@ -1,0 +1,111 @@
+/* 페이퍼로지 웹폰트 */
+/* Paperlogy Created by. Paperlogy & PTKKUN */
+/* CSS by. GitHub @whitedev7773 */
+
+/* Thin */
+@font-face {
+    font-family: "Paperlogy";
+    font-weight: 100;
+    src: url(Paperlogy-1Thin.eot);
+    src:    local("☺"),
+            url(Paperlogy-1Thin.eot?#iefix) format("embedded-opentype"),
+            url(Paperlogy-1Thin.woff2) format("woff2"),
+            url(Paperlogy-1Thin.woff) format("woff"),
+            url(Paperlogy-1Thin.ttf) format("truetype");
+}
+
+/* ExtraLight */
+@font-face {
+    font-family: "Paperlogy";
+    font-weight: 200;
+    src: url(Paperlogy-2ExtraLight.eot);
+    src:    local("☺"),
+            url(Paperlogy-2ExtraLight.eot#iefix) format("embedded-opentype"),
+            url(Paperlogy-2ExtraLight.woff2) format("woff2"),
+            url(Paperlogy-2ExtraLight.woff) format("woff"),
+            url(Paperlogy-2ExtraLight.ttf) format("truetype");
+}
+
+/* Light */
+@font-face {
+    font-family: "Paperlogy";
+    font-weight: 300;
+    src: url(Paperlogy-3Light.eot);
+    src:    local("☺"),
+            url(Paperlogy-3Light.eot#iefix) format("embedded-opentype"),
+            url(Paperlogy-3Light.woff2) format("woff2"),
+            url(Paperlogy-3Light.woff) format("woff"),
+            url(Paperlogy-3Light.ttf) format("truetype");
+}
+
+/* Regular */
+@font-face {
+    font-family: "Paperlogy";
+    font-weight: 400;
+    src: url(Paperlogy-4Regular.eot);
+    src:    local("☺"),
+            url(Paperlogy-4Regular.eot#iefix) format("embedded-opentype"),
+            url(Paperlogy-4Regular.woff2) format("woff2"),
+            url(Paperlogy-4Regular.woff) format("woff"),
+            url(Paperlogy-4Regular.ttf) format("truetype");
+}
+
+/* Medium */
+@font-face {
+    font-family: "Paperlogy";
+    font-weight: 500;
+    src: url(Paperlogy-5Medium.eot);
+    src:    local("☺"),
+            url(Paperlogy-5Medium.eot#iefix) format("embedded-opentype"),
+            url(Paperlogy-5Medium.woff2) format("woff2"),
+            url(Paperlogy-5Medium.woff) format("woff"),
+            url(Paperlogy-5Medium.ttf) format("truetype");
+}
+
+/* SemiBold */
+@font-face {
+    font-family: "Paperlogy";
+    font-weight: 600;
+    src: url(Paperlogy-6SemiBold.eot);
+    src:    local("☺"),
+            url(Paperlogy-6SemiBold.eot#iefix) format("embedded-opentype"),
+            url(Paperlogy-6SemiBold.woff2) format("woff2"),
+            url(Paperlogy-6SemiBold.woff) format("woff"),
+            url(Paperlogy-6SemiBold.ttf) format("truetype");
+}
+
+/* Bold */
+@font-face {
+    font-family: "Paperlogy";
+    font-weight: 700;
+    src: url(Paperlogy-7Bold.eot);
+    src:    local("☺"),
+            url(Paperlogy-7Bold.eot#iefix) format("embedded-opentype"),
+            url(Paperlogy-7Bold.woff2) format("woff2"),
+            url(Paperlogy-7Bold.woff) format("woff"),
+            url(Paperlogy-7Bold.ttf) format("truetype");
+}
+
+/* ExtraBold */
+@font-face {
+    font-family: "Paperlogy";
+    font-weight: 800;
+    src: url(Paperlogy-8ExtraBold.eot);
+    src:    local("☺"),
+            url(Paperlogy-8ExtraBold.eot#iefix) format("embedded-opentype"),
+            url(Paperlogy-8ExtraBold.woff2) format("woff2"),
+            url(Paperlogy-8ExtraBold.woff) format("woff"),
+            url(Paperlogy-8ExtraBold.ttf) format("truetype");
+}
+
+/* Black */
+@font-face {
+    font-family: "Paperlogy";
+    font-weight: 900;
+    src: url(Paperlogy-9Black.eot);
+    src:    local("☺"),
+            url(Paperlogy-9Black.eot#iefix) format("embedded-opentype"),
+            url(Paperlogy-9Black.woff2) format("woff2"),
+            url(Paperlogy-9Black.woff) format("woff"),
+            url(Paperlogy-9Black.ttf) format("truetype");
+}
